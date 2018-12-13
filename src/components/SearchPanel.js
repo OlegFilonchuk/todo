@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './SearchPanel.css'
 
 class SearchPanel extends Component {
   render() {
@@ -8,7 +9,12 @@ class SearchPanel extends Component {
     }
 
     return (
-      <input type="text" placeholder='Search' style={searchStyle} />
+        <input
+          className='search-input'
+          type="text"
+          placeholder='Search'
+          style={searchStyle}
+        />
     )
   }
 }

@@ -1,11 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
+import './AppHeader.css'
 
-class AppHeader extends Component {
-  render() {
-    return (
-      <h1>Hello World</h1>
-    )
-  }
+const AppHeader = ({toDo, done}) => {
+  return (
+    <div className='app-header d-flex'>
+      <h1>Todo List</h1>
+      <h2>{toDo} more to do, {done} done</h2>
+    </div>
+  )
 }
 
 export default AppHeader

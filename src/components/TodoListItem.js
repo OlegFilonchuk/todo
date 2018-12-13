@@ -1,4 +1,5 @@
 import React from 'react'
+import './TodoListItem.css'
 
 function TodoListItem({ label, important = false }) {
   const style = {
@@ -6,7 +7,9 @@ function TodoListItem({ label, important = false }) {
   }
 
   return (
-    <span style={style}>{ label }</span>
+    <span style={style} className='todo-list-item'>
+      { label }
+    </span>
   )
 }
 
