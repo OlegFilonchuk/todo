@@ -1,7 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import AppHeader from './components/AppHeader'
+import SearchPanel from './components/SearchPanel'
+import TodoList from './components/TodoList'
 
-const el = <h1>Hello World</h1>
-console.log('---', el)
+const App = () => {
+  return(
+    <div>
+      <AppHeader/>
+      <SearchPanel/>
+      <TodoList />
+    </div>
+  )
+}
 
-ReactDOM.render(el, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'))
