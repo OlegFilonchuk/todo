@@ -7,7 +7,12 @@ class TodoList extends Component {
     return (
       <ul>
         <li><TodoListItem label={items[0]}/></li>
-        <li><TodoListItem label={items[1]}/></li>
+        <li>
+          <TodoListItem
+            label={items[1]}
+            important
+          />
+        </li>
       </ul>
     )
   }
