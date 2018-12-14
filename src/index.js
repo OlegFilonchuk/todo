@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AppHeader from './components/AppHeader'
 import SearchPanel from './components/SearchPanel'
+import ItemStatusFilter from './components/ItemStatusFilter'
 import TodoList from './components/TodoList'
 import './index.css'
 
@@ -18,6 +19,7 @@ const App = () => {
       <AppHeader toDo={1} done={2}/>
       <div className='top-panel d-flex'>
         <SearchPanel/>
+        <ItemStatusFilter/>
       </div>
       <TodoList todos={todoData}/>
     </div>
