@@ -18,16 +18,16 @@ export default class App extends Component {
   deleteItem = (id) => {
     this.setState(({todoData}) => {
       const idx = todoData.findIndex((el) => el.id === id)
-      const before = todoData.slice(0, idx)
-      const after = todoData.slice(idx+1)
       return {
-        todoData: [...before, ...after]
+        todoData: [
+          ...todoData.slice(0, idx),
+          ...todoData.slice(idx+1)
+        ]
       }
     })
   }
 
   render() {
-
     return(
       <div className='todo-app'>
         <AppHeader toDo={1} done={2}/>
