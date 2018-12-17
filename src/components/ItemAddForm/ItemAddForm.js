@@ -8,30 +8,32 @@ export default class ItemAddForm extends Component {
   }
 
   onInputChange = (ev) => {
-    this.setState({value: ev.currentTarget.value})
+    this.setState({value: ev.target.value})
   }
 
-  submitForm = () => {
+  submitForm = (ev) => {
+    ev.preventDefault()
     this.props.addItem(this.state.value)
     this.setState({value: ''})
   }
 
   render() {
     return (
-      <div className="item-add-form">
+      <form className="item-add-form d-flex" onSubmit={this.submitForm} >
         <input
-          className='item-add-input'
+          className='item-add-input form-control'
           type="text"
           value={this.state.value}
           onChange={this.onInputChange}
+          placeholder='What needs to be done...'
+          autoFocus
         />
         <button
           className='btn btn-outline-secondary'
-          onClick={this.submitForm}
         >
           Add Item
         </button>
-      </div>
+      </form>
     )
   }
 }
