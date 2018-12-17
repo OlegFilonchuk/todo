@@ -3,6 +3,7 @@ import AppHeader from '../AppHeader'
 import SearchPanel from '../SearchPanel'
 import ItemStatusFilter from '../ItemStatusFilter'
 import TodoList from '../TodoList'
+import ItemAddForm from '../ItemAddForm'
 import './App.css'
 
 export default class App extends Component {
@@ -39,6 +40,7 @@ export default class App extends Component {
           todos={this.state.todoData}
           onDeleted={this.deleteItem}
         />
+        <ItemAddForm/>
       </div>
     )
   }
