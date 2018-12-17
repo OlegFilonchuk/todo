@@ -28,6 +28,18 @@ export default class App extends Component {
     })
   }
 
+  addItem = () => {
+    const maxId = Math.max(...this.state.todoData.map((item) => item.id))
+    this.setState(({todoData}) => {
+      return {
+        todoData: [
+          ...todoData,
+          {label: 'text', important: false, id: maxId+1}
+        ]
+      }
+    })
+  }
+
   render() {
     return(
       <div className='todo-app'>
@@ -40,7 +52,7 @@ export default class App extends Component {
           todos={this.state.todoData}
           onDeleted={this.deleteItem}
         />
-        <ItemAddForm/>
+        <ItemAddForm addItem={this.addItem}/>
       </div>
     )
   }
