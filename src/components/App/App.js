@@ -28,16 +28,24 @@ export default class App extends Component {
     })
   }
 
-  addItem = () => {
+  addItem = (text) => {
     const maxId = Math.max(...this.state.todoData.map((item) => item.id))
     this.setState(({todoData}) => {
       return {
         todoData: [
           ...todoData,
-          {label: 'text', important: false, id: maxId+1}
+          {label: text, important: false, id: maxId+1}
         ]
       }
     })
+  }
+
+  onToggleImportant = (id) => {
+    console.log('---', `toggle important ${id}`)
+  }
+
+  onToggleDone = (id) => {
+    console.log('---', `toggle done ${id}`)
   }
 
   render() {
@@ -51,6 +59,8 @@ export default class App extends Component {
         <TodoList
           todos={this.state.todoData}
           onDeleted={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
         />
         <ItemAddForm addItem={this.addItem}/>
       </div>
