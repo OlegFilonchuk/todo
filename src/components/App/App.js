@@ -27,6 +27,17 @@ export default class App extends Component {
     }
   }
 
+  toggleProperty(arr, id, propName) {
+    const idx = arr.findIndex((el) => el.id === id)
+    const oldItem = arr[idx]
+    const newItem = {...oldItem, [propName]: !oldItem[propName]}
+    return [
+        ...arr.slice(0, idx),
+        newItem,
+        ...arr.slice(idx+1)
+    ]
+  }
+
   deleteItem = (id) => {
     this.setState(({todoData}) => {
       const idx = todoData.findIndex((el) => el.id === id)
@@ -52,23 +63,35 @@ export default class App extends Component {
   }
 
   onToggleImportant = (id) => {
-    console.log('---', `toggle important ${id}`)
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'important')
+      }
+    })
   }
 
   onToggleDone = (id) => {
-    console.log('---', `toggle done ${id}`)
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'done')
+      }
+    })
   }
 
   render() {
+    const { todoData } = this.state
+    const doneCount = todoData.filter((item) => item.done).length
+    const todoCount = todoData.length - doneCount
+
     return(
       <div className='todo-app'>
-        <AppHeader toDo={1} done={2}/>
+        <AppHeader toDo={todoCount} done={doneCount}/>
         <div className='top-panel d-flex'>
           <SearchPanel/>
           <ItemStatusFilter/>
         </div>
         <TodoList
-          todos={this.state.todoData}
+          todos={todoData}
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
