@@ -8,12 +8,23 @@ import './App.css'
 
 export default class App extends Component {
 
+  maxId = 0
+
   state = {
     todoData: [
-      {label: 'Drink Coffee', important: false, id: 1},
-      {label: 'Make Awesome App', important: true, id: 2},
-      {label: 'Have a lunch', important: false, id: 3}
+      this.createTodoItem('Drink Coffee'),
+      this.createTodoItem('Make Awesome App'),
+      this.createTodoItem('Have a lunch'),
     ]
+  }
+
+  createTodoItem(label) {
+    return {
+      label,
+      important: false,
+      done: false,
+      id: this.maxId++
+    }
   }
 
   deleteItem = (id) => {
@@ -29,12 +40,12 @@ export default class App extends Component {
   }
 
   addItem = (text) => {
-    const maxId = Math.max(...this.state.todoData.map((item) => item.id))
+    const newItem = this.createTodoItem(text)
     this.setState(({todoData}) => {
       return {
         todoData: [
           ...todoData,
-          {label: text, important: false, id: maxId+1}
+          newItem
         ]
       }
     })
