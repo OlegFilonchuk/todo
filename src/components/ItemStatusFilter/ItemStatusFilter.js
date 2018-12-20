@@ -3,53 +3,34 @@ import './ItemStatusFilter.css'
 
 export default class ItemStatusFilter extends Component {
 
-  state = {
-    filter: 'all'
-  }
-
-  onButtonClick = ({target}) => {
-    this.setState({
-      filter: target.dataset.filter
-    })
-    this.props.onFilterChange(target.dataset.filter)
-
-    document.querySelectorAll('[data-active]').forEach((item) => {
-      item.dataset.active = 'false'
-    })
-
-    target.dataset.active = 'true'
-  }
+  buttons = [
+    {name: 'all', label: 'All'},
+    {name: 'active', label: 'Active'},
+    {name: 'done', label: 'Done'}
+  ]
 
   render() {
+
+    const { filter, onFilterChange} = this.props
+
+    const buttons = this.buttons.map(({name, label}) => {
+      const isActive = filter === name
+      const className = isActive ? 'btn-info' : 'btn-outline-secondary'
+
+      return (
+        <button
+          type="button"
+          className={`btn ${className}`}
+          key={name}
+          onClick={() => onFilterChange(name)}
+        >
+          {label}
+        </button>
+      )
+    })
     return (
       <div className='btn-group'>
-        <button
-          className="btn btn-outline-secondary"
-          data-filter="all"
-          data-active="false"
-          onClick={this.onButtonClick}
-        >
-          All
-        </button>
-
-        <button
-          className="btn btn-outline-secondary"
-          data-filter="active"
-          data-active="false"
-          onClick={this.onButtonClick}
-        >
-          Active
-        </button>
-
-        <button
-          className="btn
-          btn-outline-secondary"
-          data-filter="done"
-          data-active="false"
-          onClick={this.onButtonClick}
-        >
-          Done
-        </button>
+        {buttons}
       </div>
     )
   }

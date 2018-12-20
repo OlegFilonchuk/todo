@@ -1,3 +1,5 @@
 button[data-active='true'] {
-  background: aquamarine;
+  background: darkcyan;
+  color: white;
+  font-weight: bold;
 }
