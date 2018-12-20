@@ -9,7 +9,7 @@ class SearchPanel extends Component {
 
   onInputChange = (ev) => {
     this.setState({value: ev.target.value})
-    this.props.onSearchChange(this.state.value)
+    this.props.onSearchChange(ev.target.value)
   }
 
   render() {

@@ -16,7 +16,8 @@ export default class App extends Component {
       this.createTodoItem('Make Awesome App'),
       this.createTodoItem('Have a lunch'),
     ],
-    term: ''
+    term: '',
+    filters: []
   }
 
   createTodoItem(label) {
@@ -34,7 +35,7 @@ export default class App extends Component {
     }
 
     return items.filter((item) => {
-      return item.label.includes(term)
+      return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1
     })
   }
 
@@ -86,6 +87,12 @@ export default class App extends Component {
       return {
         todoData: this.toggleProperty(todoData, id, 'done')
       }
+    })
+  }
+
+  onSearchChange = (text) => {
+    this.setState({
+      term: text
     })
   }
 
